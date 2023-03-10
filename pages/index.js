@@ -9,7 +9,7 @@ const Home = () => {
   const apiCall = async () => {
     try {
       const res = await fetch(
-        `http://demonodeapp.eba-auwqaiwm.us-east-1.elasticbeanstalk.com/`,
+        `https://api.app-aws-nicolas-rios.link/users/getusers`,
         {
           method: 'GET',
           headers: {
@@ -18,8 +18,8 @@ const Home = () => {
           },
         }
       );
-      const { result } = await res.json();
-      setData(result);
+      const { data } = await res.json();
+      setData(data);
     } catch (e) {
       console.log(e)
     }
@@ -41,7 +41,7 @@ const Home = () => {
         <h3>datos BD</h3>
         {data && data.map((item) => (
           <div key={item.id} >
-            <h2>{`Dato ${item.id}: ${item.nombre} ${item.correo}`}</h2>
+            <h2>{`Dato ${item.id}: ${item.nombre} ${item.apellido} ${item.fecha}`}</h2>
           </div>
         ))}
       </div>
