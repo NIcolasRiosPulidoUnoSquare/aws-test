@@ -5,6 +5,7 @@ import styles from '../styles/Home.module.css';
 
 const Home = () => {
   const [data, setData] = useState(null);
+  const [ipServer, setIp] = useState('');
 
   const apiCall = async () => {
     try {
@@ -18,8 +19,9 @@ const Home = () => {
           },
         }
       );
-      const { data } = await res.json();
+      const { data, ip } = await res.json();
       setData(data);
+      setIp(ip);
     } catch (e) {
       console.log(e)
     }
@@ -38,6 +40,7 @@ const Home = () => {
       </Head>
       <div className={styles.container}>
         <h1 className={styles.title}>fisrt App aws</h1>
+        <h3>{`IP: ${ipServer}`}</h3>
         <h3>datos BD</h3>
         {data && data.map((item) => (
           <div key={item.id} >
